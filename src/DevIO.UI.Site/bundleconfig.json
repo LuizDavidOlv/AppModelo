@@ -1,0 +1,27 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site_bundle.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/css/bootstrap.css",
+      "wwwroot/css/site.css"
+    ]
+  },
+
+  {
+    "outputFileName": "wwwroot/js/site_bundle.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/jquery.js",
+      "wwwroot/js/site.js"
+    ]
+  },
+
+  {
+    "outputFileName": "wwwroot/lib/bootstrap/js/bootstrap.min.js",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/js/bootstrap.js"
+    ]
+  }
+]
+
+//esses arquivos irão se transformar em site_bundle
+// Uma vez que se mistura os dois arquivos em um só, não se pode usar a sobreescrita de funcionalidade
