@@ -9,10 +9,10 @@ namespace DevIO.UI.Site.Data
         {
             return new Pedido();
         }
-
-        public interface IPedidoRepository
-        {
-            Pedido ObterPedido();
-        }
     }
+    public interface IPedidoRepository
+    {
+        Pedido ObterPedido();
+    }
+
 }
