@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing.Patterns;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -18,6 +20,13 @@ namespace DevIO.UI.Site
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<RazorViewEngineOptions>(Options =>
@@ -27,6 +36,10 @@ namespace DevIO.UI.Site
                 Options.AreaViewLocationFormats.Add(item: "/Modulos/{2}/Views/Shared/{0}.cshtml");
                 Options.AreaViewLocationFormats.Add(item: "/Views/Shared/{0}.cshtml");
             });
+
+           
+            services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MeuDbContext"))); //Buscar connect to string no appsettings, que é a classe de configuração 
+
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddTransient<IPedidoRepository,PedidoRepository>(); //Configuração da injeção de depencência 
